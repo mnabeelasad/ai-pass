@@ -2,8 +2,8 @@
 
 > A policy-aware multi-agent decision system powered by LangGraph, RAG, and structured AI reasoning.
 
-**Live Demo:** `[your-render-link-here]`
-**GitHub:** `[your-repo-link-here]`
+**Live Demo:** https://ai-pass.onrender.com
+**GitHub:** `https://github.com/mnabeelasad/ai-pass`
 
 ---
 
