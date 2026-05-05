@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  ai-pass:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - EMBEDDING_MODE=${EMBEDDING_MODE:-local}
+      - CHROMA_PERSIST_PATH=/data/chroma_db
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - chroma_data:/data/chroma_db
+    restart: unless-stopped
+
+volumes:
+  chroma_data:

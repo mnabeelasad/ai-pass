@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ai-pass
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: EMBEDDING_MODE
+        value: local
+      - key: CHROMA_PERSIST_PATH
+        value: /tmp/chroma_db
+      - key: LOG_LEVEL
+        value: INFO
