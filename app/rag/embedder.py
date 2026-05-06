@@ -7,26 +7,15 @@ logger = get_logger(__name__)
 
 def get_embedder():
     """
-    Returns the appropriate embedding function.
-    - 'local': uses sentence-transformers (free, no API key needed)
-    - 'openai': uses OpenAI text-embedding-3-small
+    Uses OpenAI text-embedding-3-small (Low RAM usage for Render)
     """
-    if settings.embedding_mode == "openai":
-        from langchain_openai import OpenAIEmbeddings
-        logger.info("Using OpenAI embeddings")
-        return OpenAIEmbeddings(
-            model="text-embedding-3-small",
-            openai_api_key=settings.openai_api_key,
-        )
-    else:
-        from langchain_community.embeddings import HuggingFaceEmbeddings
-        logger.info("Using local HuggingFace embeddings (all-MiniLM-L6-v2)")
-        return HuggingFaceEmbeddings(
-            model_name="all-MiniLM-L6-v2",
-            model_kwargs={"device": "cpu"},
-            encode_kwargs={"normalize_embeddings": True},
-        )
-
+    from langchain_openai import OpenAIEmbeddings
+    logger.info("Using OpenAI embeddings to save server RAM")
+    
+    return OpenAIEmbeddings(
+        model="text-embedding-3-small",
+        openai_api_key=settings.openai_api_key,
+    )
 
 def chunk_text(text: str, chunk_size: int = 500, overlap: int = 50) -> List[str]:
     """Simple sliding-window chunker."""
