@@ -175,7 +175,7 @@ with tab_analyze:
                         time.sleep(1)
                         progress_bar.progress((i + 1) / 60)
                         
-                        poll = requests.get(f"{api_url}/result/{task_id}", timeout=10)
+                        poll = requests.get(f"{api_url}/result/{task_id}", timeout=30)
                         if poll.status_code == 200:
                             data = poll.json()
                             status = data.get("status")
